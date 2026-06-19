@@ -5,7 +5,7 @@ export type Serving = { label: string; grams: number };
 export type Food = {
   id: string; name: string; aliases: string[]; calories: number; protein: number;
   fat: number; carbs: number; category: string; servings: Serving[];
-  favorite?: boolean; archived?: boolean; uses?: number; custom?: boolean;
+  favorite?: boolean; archived?: boolean; uses?: number; custom?: boolean; barcode?: string;
 };
 export type FoodLog = {
   id: string; foodId: string; name: string; meal: Meal; grams: number;
