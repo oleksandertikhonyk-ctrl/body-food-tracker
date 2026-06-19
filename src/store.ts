@@ -17,7 +17,7 @@ export function targets(p: Omit<Profile, 'calories' | 'protein' | 'fat' | 'carbs
   const delta = p.goal === 'loss' ? -({ slow: 300, normal: 400, fast: 500 }[p.pace]) : p.goal === 'belly' ? -250 : p.goal === 'gain' ? 300 : 0;
   const calories = Math.max(1200, Math.round(maintenance + delta));
   const protein = Math.round(p.weight * 1.8), fat = Math.round(p.weight * .8);
-  return { ...p, calories, protein, fat, carbs: Math.max(0, Math.round((calories - protein * 4 - fat * 9) / 4)) };
+  return { ...p, calories, protein, fat, carbs: Math.max(0, Math.round((calories - protein * 4 - fat * 9) / 4)), stepGoal: p.stepGoal ?? 8000, stepLength: p.stepLength ?? 0, addBurnedToGoal: p.addBurnedToGoal ?? false };
 }
 
 function validData(value: unknown): value is AppData {

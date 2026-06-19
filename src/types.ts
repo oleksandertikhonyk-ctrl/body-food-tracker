@@ -1,5 +1,9 @@
 export type Meal = 'breakfast' | 'lunch' | 'dinner' | 'snack';
 export type Accuracy = 'exact' | 'estimated' | 'rough';
+export type Intensity = 'light' | 'medium' | 'high';
+export type ActivityType = 'walking' | 'running' | 'cycling' | 'gym' | 'strength' | 'home' | 'physical-work' | 'swimming' | 'football' | 'boxing' | 'stretching' | 'other';
+export type StepEntry = { id: string; date: string; steps: number; calories: number; note: string; createdAt: string; updatedAt: string };
+export type ActivityEntry = { id: string; date: string; type: ActivityType; durationMinutes: number; intensity: Intensity; met: number; calories: number; manualCalories: boolean; note: string; createdAt: string; updatedAt: string };
 
 export type Serving = { label: string; grams: number };
 export type Food = {
@@ -15,12 +19,14 @@ export type FoodLog = {
 export type DayLog = {
   date: string; foods: FoodLog[]; water: number; weight?: number; belly?: number;
   bloating?: number; steps?: number; burned?: number; activityMinutes?: number; notes?: string;
+  stepEntries?: StepEntry[]; activities?: ActivityEntry[];
 };
 export type Profile = {
   weight: number; height: number; age: number; sex: 'male' | 'female';
   goal: 'belly' | 'loss' | 'maintain' | 'gain'; activity: 'low' | 'medium' | 'high';
   pace: 'slow' | 'normal' | 'fast'; targetWeight: number; waterGoal: number;
   calories: number; protein: number; fat: number; carbs: number;
+  stepGoal?: number; stepLength?: number; addBurnedToGoal?: boolean;
 };
 export type RecipeIngredient = { foodId: string; grams: number };
 export type Recipe = { id: string; name: string; ingredients: RecipeIngredient[]; servings: number; archived?: boolean };
